@@ -1,6 +1,6 @@
 # IMPACT DE L’ACCES A L’ELECTRICITE SUR LA CROISSANCE ECONOMIQUE AU TOGO : UNE APPROCHE VAR #
 
-
+---
 ## 1. Contexte et justification ##
 
 Le Togo, un pays d'Afrique de l'Ouest, est confronté à de nombreux défis de développement, notamment un taux de pauvreté élevé, une faible croissance économique et un accès limité à l'électricité (Tchegueni et al, 2019). L'accès à l'électricité est un facteur crucial pour le développement économique, car il stimule la productivité, crée des emplois et améliore les conditions de vie des populations (Vessat, 2019).
@@ -35,16 +35,25 @@ Pour réaliser notre investigation, nous avons utilisé les séries temporelles 
 
 ## 6. Spécification du modèle ##
 Pour analyser l’impact de l’accès à l’électricité sur la croissance économique au Togo, nous allons spécifier un modèle VAR (1). Le modèle VAR est adapté pour capturer les dynamiques de court terme entre les variables mais les séries doivent être de même ordre d’intégration. De façon spécifique à notre étude le modèle VAR a estimé (l’équation de la variation de la croissance économique) se présente comme suit : 
-〖∇y〗_t= α+β_1 y_(t-1)+ β_2 x_(1t-1)+β_3 x_(2t-1)  〖+ ε〗_t
-Où : 
-	〖∇y〗_t est la variation de la croissance économique
-	y_(t-1) est la valeur de la croissance économique passée.
-	x_(1t-1) est la valeur passée du taux d’accès à l’électricité en milieu rural
-	x_(2t-1) est la valeur passée du taux d’accès à l’électricité en milieu urbain
-	α est la constante.
-	β_1  ;  β_2 et β_2 sont les coefficients à estimer.
-	ε_t est le terme d'erreur.
-	
+
+# Modèle d'Impact Électricité-Croissance
+
+Le modèle s'écrit :
+
+$$
+\Delta y_t = \alpha + \beta_1 y_{t-1} + \beta_2 x_{1_{t-1}} + \beta_3 x_{2_{t-1}} + \epsilon_t
+$$
+
+## Où :
+
+- $\Delta PIB_t$ est **la variation de la croissance économique** à la période $t$.
+- $PIB_{t-1}$ est **la valeur de la croissance économique passée**.
+- $x_{1_{t-1}}$ est **la valeur passée du taux d'accès à l'électricité en milieu rural**.
+- $x_{2_{t-1}}$ est **la valeur passée du taux d'accès à l'électricité en milieu urbain**.
+- $\alpha$ est **la constante**.
+- $\beta_1$, $\beta_2$ et $\beta_3$ sont **les coefficients à estimer**.
+- $\epsilon_t$ est **le terme d'erreur**.
+
 ## 7. Résultats ## 
 Cette section présente les résultats de l'analyse quantitative effectuée pour étudier l’impact de l’accès à l’électricité sur la croissance économique au Togo. Les résultats sont issus des données couvrant la période de 2000 à 2023 et la modélisation multivariée simple des séries temporelles. 
 
@@ -54,39 +63,47 @@ L’analyse visuelle en niveau des séries impliquées dans notre étude révèl
 
 Figure 1 : Visualisation des séries en niveau
 
- ![image]()
+ ![image](https://github.com/Data-and-ME-Enthusiast/Acc-s-l-lectricit-et-croissance-conomique/blob/main/graphs/serie_niv_sheme.png?raw=true)
 
 Par ailleurs, l’analyse visuelle en différence première de ces séries indique qu’elles semblent être stationnaires en différence première. En effet, elles semblent recoupées leur moyenne en différence première.  
 
 Figure 2  : Visualisation des séries en différence première
-  ![image]()
+  ![image](https://github.com/Data-and-ME-Enthusiast/Acc-s-l-lectricit-et-croissance-conomique/blob/main/graphs/serie_dif_sheme.png?raw=true)
   
 Source : Auteur, à partir des données de l’étude
 	
 #### 7.1.2. Test de racine unitaire ####
 Les résultats présentés dans le tableau ci-dessous démontrent que les séries croissance économique ($y$), accès à l’électricité en milieu rural ($x_1$) et l’accès à l’electricité en milieu urbain ($x_2$) ne sont pas stationnaires en niveau. En effet, la valeur absolue des statistiques du test respectivement (-2,810; -0,221 et 0,266) sont inférieures aux valeurs absolues des valeurs seuilles à 5% lues (-3,600; -1,950 et -1,950). Par contre, lorsqu’on les différencie d’ordre 1, elles deviennent toutes stationnaires. Elles ont en effet, des statistiques du test respectives -4.542; -3.001 et -3.459 supérieures en valeur absolue aux statistiques seuilles à 5% respectivement de -3.600; -1.950 et -1.950. La prise en compte de ces trois séries en différence première nous permet d’obtenir une meilleure modélisation de nos séries.  
 
-Tableau 1 : Test de stationnarité
-Variables	Test ADF	Valeurs critiques	Décision
-		1%	5%	10%	
-En niveau
-y	-2.810	-4.380	-3.600	-3.240	Non stationnaire
-x_1	-0.221	-2.660	-1.950	-1.600	Non stationnaire
-x_2	0.266	-2.660	-1.950	-1.600	Non stationnaire
-En différence première
-y	-4.542***	-4.380	-3.600	-3.240	Stationnaire
-x_1	-3.001***	-2.660	-1.950	-1.600	Stationnaire
-x_2	-3.459***	-2.660	-1.950	-1.600	Stationnaire
+Tableau 1 : Test de stationnarité en niveau
+
+| Variables | Test ADF | Valeurs critiques |  |  | Décision |
+|-----------|----------|-------------------|--|--|----------|
+|           |          | 1%    | 5%        | 10%   |        |
+| $PIB$     | -2,810  | -4,380 | -3,600    | -3,240 | Non stationnaire |
+| $x_1$     | -0,221  | -2,660 | -1,950    | -1,600 | Non stationnaire |
+| $x_2$     | 0,266   | -2,660 | -1,950    | -1,600 | Non stationnaire |
+
+Tableau 2 : Test de stationnarité en différence première
+
+| Variables | Test ADF | Valeurs critiques |  |  | Décision |
+|-----------|----------|-------------------|--|--|----------|
+|           |          | 1%    | 5%        | 10%   |        |
+| $y$       | -4,542***| -4,380| -3,600    | -3,240 | Stationnaire |
+| $x_1$     | -3,001***| -2,660 | -1,950    | -1,600 | Stationnaire |
+| $x_2$     | -3,459***| -2,660 | -1,950    | -1,600 | Stationnaire |
+
 Source : Auteur, à partir des données de l’étude
 
 #### 7.1.3. Test de cointégration de Johansen (1988) ####
 L’analyse des résultats du test de cointégration de Johansen révèle que nos séries ne sont pas cointégré. En effet, les statistiques de trace associées à chaque rang sont toutes inférieures aux valeurs critiques au seuil de 5%. Ceci indique qu’il n’y a pas de relation de long terme entre nos séries. Par conséquent la modélisation appropriée à nos séries est la modélisation VAR en différence première. 
 
-Tableau 2: Test de cointégration de Johansen
-Rang maximum	Statistique de trace	Valeurs critiques
-0	29.3431	29.68
-1	7.0551	15.41
-2	3.3071	3.76
+Tableau 3 : Test de cointégration de Johansen
+| Rang maximum | Statistique de trace | Valeurs critiques | 
+|-----------   |----------            |-------------------|
+|     0        |    29,3431	          |  29,68            |
+|     1        |    7,0551	          |  15,41            |
+|     2        |    3,3071	          |  3,76             |
 
 Source : Auteur, à partir des données de l’étude
 
@@ -94,6 +111,7 @@ Source : Auteur, à partir des données de l’étude
 Les tests d’autocorrélation des erreurs révèlent une absence d’autocorrélation d’ordre 1 des erreurs. En effet, la p-values (0,05894) associée à ce test est supérieur au seuil de 5%. Par contre le test de normalité révèle que dans l’ensemble les résidus ne suivent pas une loi normale. En effet, la p-value (0,00204) associée à ce test est inférieure au seuil de 5%. A ce qui concerne la stabilité du modèle, les résultats du test montrent que le modèle est stable. En effet, les valeurs propres issues du test sont tous inférieures à 1. Ce qui signifie qu’elles sont toutes à l’intérieur du cercle unité.
 
 Figure 3: Cercle unité du test de stabilité
+![image](https://github.com/Data-and-ME-Enthusiast/Acc-s-l-lectricit-et-croissance-conomique/blob/main/graphs/unit_root.png?raw=true)
  
 Source : Auteur, à partir des données de l’étude
 
@@ -107,13 +125,14 @@ Le coefficient associé à la variation du taux d’accès à l’électricité 
 Quant à la constante, qui représente la variation moyenne du PIB lorsque toutes les variables explicatives sont égales à zéro, est de 36,30 unités. Cette valeur est statistiquement significative (p-value = 0,002), ce qui montre que même en l'absence des effets des autres variables, il y a une tendance positive significative dans la variation du PIB.
 A ce qui concerne le test de causalité de Granger, il révèle que la variation de la croissance économique cause granger la variation de l’accès à l’électricité en milieu rural. En effet, la p-value associée (0,046) est inférieure au seuil de 5%. De même; la variation de l’accès à l’électricité en milieu rural cause Granger la variation de la croissance économique (p-value = 0,020)
 
+Tableau 4 : Résultats d'estimation du modèle VAR (1) relatif à la variation de la croissance économique
+| Variables    | Coefficients         | Valeurs p         | 
+|-----------   |----------            |-------------------|
+| $y_(t-1)$    |    0,1055756         |  0,,629           |
+| $x_1(t-1)$   |   -9,669639          |  0,020            |
+| $x_1(t-1)$   |    3,3071	          |  0,264            |
+| Constante    |    36,2994	          |  0,002            |
 
-Tableau 3 : Résultats d'estimation du modèle VAR (1) relatif à la variation de la croissance économique
-Variables	Coefficients 	Valeur p
-〖gdp〗_(t-1)	0,1055756	0,629
-〖acces_rural〗_(t-1)	-9,669639	0,020
-〖acces_urban〗_(t-1)	-2,735785	0,264
-Constante	36,2994	0,002
 Source : Auteur, à partir des données de l’étude
 
 ## 9. Discutions des résultats ##
@@ -123,8 +142,6 @@ Enfin, le PIB retardé n'a pas non plus d'effet significatif sur la variation du
 
 ## 10. Validation des hypothèses de recherche ##
 D’après les résultats de notre analyse, nos deux hypothèses ne sont pas valides. En effet, l’analyse montre plutôt que l’impact de l'accès à l'électricité en milieu rural sur le PIB est négatif et statistiquement significatif et l’accès à l’électricité en milieu urbain n'a pas d'effet significatif sur la variation du PIB dans le modèle. Par conséquent l’hypothèse 1 selon laquelle l'accès à l'électricité, quel que soit le milieu, a un impact positif sur la croissance économique au Togo n’est pas valide et l’hypothèse 2 selon laquelle l'accès à l'électricité en milieu urbain influence la croissance économique au Togo n’ont plus. 
-
-
 
 ## 11. Conclusion et recommandations ##
 L'analyse révèle que l'amélioration de l'accès à l'électricité en milieu rural a un impact négatif et significatif sur le PIB à court terme, suggérant que les investissements nécessaires pour l'électrification rurale peuvent entraîner des coûts économiques immédiats. L'accès à l'électricité en milieu urbain, quant à lui, n'a pas d'effet significatif sur la variation du PIB, et le PIB retardé n'influence pas non plus de manière notable les variations économiques. Ces résultats indiquent que l'extension des infrastructures électriques, surtout en milieu rural, bien qu'importante pour le développement à long terme, doit être gérée avec précaution pour éviter des impacts négatifs sur la croissance à court terme. Au terme de cette analyse nous faisons des recommandations suivantes : 
